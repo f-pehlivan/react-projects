@@ -21,15 +21,24 @@ const getMovies = (API) => {
     .then(res => setMovies(res.results))
 }
 
+const handleSubmit = (e) => {
+  e.preventDefault()
+  if (searchTerm){
+    getMovies(SEARCH_API + searchTerm)
+  }
+  searchTerm('')
+}
+
 
   return (
-
     <>
-    <form className='search'>
+    <form className='search' onSubmit={handleSubmit}>
       <input type='search'
         className='search-input'
         placeholder='Search a movie...'
-        value={searchTerm} />
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        />
 
     </form>
 
