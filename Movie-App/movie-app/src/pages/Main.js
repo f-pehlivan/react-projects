@@ -26,12 +26,12 @@ const handleSubmit = (e) => {
   if (searchTerm){
     getMovies(SEARCH_API + searchTerm)
   }
-  searchTerm('')
+  setSearchTerm('')
 }
 
 
   return (
-    <>
+    <div>
     <form className='search' onSubmit={handleSubmit}>
       <input type='search'
         className='search-input'
@@ -39,13 +39,14 @@ const handleSubmit = (e) => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <button type='submit'>Search</button>
 
     </form>
 
     <div className='movie-container'>
         {movies.map((movie) => <MovieCard key={movie.id} {...movie} />)}
     </div>
-    </>
+    </div>
   )
 }
 
