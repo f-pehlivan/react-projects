@@ -43,7 +43,7 @@ const handleSubmit = (e) => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type='submit'>Search</button>
+        <button type='submit' style={{borderRadius: '5px'}}>Search</button>
 
     </form>
 
