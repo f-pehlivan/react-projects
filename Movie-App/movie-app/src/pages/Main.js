@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext  } from 'react'
-import MovieCard from '../components/MovieCard'
-import AuthContext from '../context/AuthContext'
+import  MovieCard from '../components/MovieCard'
+import { AuthContext } from '../context/AuthContext'
 
 const FEATURED_API = 'https://api.themoviedb.org/3/discover/movie?api_key=d6278b3dc3e6f8f8376a89851c3f8c8f'
 const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=d6278b3dc3e6f8f8376a89851c3f8c8f&query='
@@ -10,25 +10,25 @@ const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=d6278b3dc3
 const Main = () => {
 
   const [ movies, setMovies ] = useState([])
-  const [searchTerm, setSearchTerm] = useState('')
-  const currentUser = useContext(AuthContext)
+  const [ searchTerm, setSearchTerm ] = useState('')
+  const {currentUser} = useContext(AuthContext)
 
   useEffect(() => {
-    getMovies(FEATURED_API)
-}, [])
+      getMovies(FEATURED_API)
+  }, [])
 
-const getMovies = (API) => {
-    fetch(API)
-    .then(res => res.json())
-    .then(res => setMovies(res.results))
-}
+  const getMovies = (API) => {
+      fetch(API)
+      .then(res => res.json())
+      .then(res => setMovies(res.results))
+  }
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  if (searchTerm && currentUser){
-    getMovies(SEARCH_API + searchTerm)
+  if(searchTerm && currentUser) {
+      getMovies(SEARCH_API + searchTerm)
   }else{
-    alert('Please login to search a movie.')
+      alert('Please login to search a movie.')
   }
   setSearchTerm('')
 }
